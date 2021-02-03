@@ -1,0 +1,210 @@
+@import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@500&display=swap");
+
+html,
+body {
+  margin: 0px;
+  background-color: rgb(243, 243, 243);
+  height: 100%;
+}
+
+.learning {
+  height: 100%;
+}
+
+.answer-label {
+  margin: auto;
+}
+
+.card {
+  font-family: "Noto Sans SC";
+}
+.card,
+.card-answer {
+  background-color: white;
+  border: 1px solid grey;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+}
+
+.card-answer {
+  font-family: 'Architects Daughter';
+}
+
+.correct-answer,
+.incorrect-answer {
+  text-align: center;
+  font-family: "Architects Daughter", cursive;
+  font-size: 30px;
+}
+.word {
+  justify-self: center;
+}
+.feedback {
+  font-size: 22px;
+  text-align: center;
+  margin-top: 70px;
+}
+.correct,
+.incorrect {
+  position: absolute;
+  font-size: 30px;
+  top: 15%;
+  font-family: "Architects Daughter", cursive;
+}
+.correct,
+.correct-answer {
+  color: green;
+}
+.incorrect,
+.incorrect-answer {
+  color: red;
+}
+
+.score {
+  text-align: center;
+  font-family: "Architects Daughter", cursive;
+  font-size: 35px;
+}
+
+.tally {
+  color: green;
+}
+
+.card,
+.card-answer {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4em;
+}
+
+.record {
+  position: absolute;
+  font-size: 30px;
+  top: 5px;
+  left: 10px;
+}
+
+.right,
+.wrong {
+  display: inline-block;
+  font-family: "Architects Daughter";
+  font-weight: 1000;
+}
+
+.right {
+  color: rgb(3, 190, 3);
+}
+
+.wrong {
+  color: rgb(255, 0, 0);
+}
+
+.next-button {
+  background-color: rgb(0, 255, 0);
+  border: 1px solid grey;
+  padding: 10px 20px;
+  font-size: 2em;
+  font-family: "Architects Daughter";
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.next-button:hover {
+  background-color: rgb(140, 255, 140);
+}
+
+.answer-input {
+  width: 320px;
+  display: block;
+  margin: auto;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.flip {
+  height: 50%;
+  perspective: 1000px;
+  width: 50%;
+  margin: auto;
+}
+
+.flip-internal {
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+.activate {
+  transform: rotateX(180deg);
+}
+
+.flip .front-card,
+.flip .back-card {
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.flip .back-card {
+  transform: rotateX(180deg);
+}
+
+.correct {
+  display: block;
+}
+
+
+.original {
+  position: absolute;
+  top: 90%;
+  font-size: 20px;
+}
+
+
+.error {
+  color: red;
+}
+
+.next-button:disabled{
+  background-color: white;
+  cursor: default;
+}
+
+fieldset {
+  border: none;
+}
+
+.score h2 {
+  font-size: 40px;
+}
+
+@media only screen and (max-width: 600px) {
+  .front, .back{
+    width: 100px;
+  }
+  .navbar-right a{
+    font-size: 15px;
+  }
+  .un-nav{
+    font-size: 15px;
+    padding-left: 50px;
+    text-align: center;
+  }
+  .logo {
+    font-size: 20px;
+    margin-left: 10px;
+  }
+.learning .word {
+  font-size: 30px;
+  text-align: center;
+}
+.flip {
+  width: 80%;
+}
+ }

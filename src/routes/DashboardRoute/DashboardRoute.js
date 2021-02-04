@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "../../styles/loggedin.css";
 import LanguageApiService from '../../services/language-api-service'
 import {Link} from 'react-router-dom'
 

@@ -17,16 +17,15 @@ class RegistrationForm extends Component {
 
   handleSubmit = (ev) => {
     ev.preventDefault();
-    const { name, username, password, role } = ev.target;
-    console.log(role.value)
+    const { fullname, username, password, role } = ev.target;
     AuthApiService.postUser({
-      name: name.value,
+      fullname: fullname.value,
       username: username.value,
       password: password.value,
       role: role.value
     })
       .then((user) => {
-        name.value = "";
+        fullname.value = "";
         username.value = "";
         password.value = "";
         this.props.onRegistrationSuccess();
@@ -56,7 +55,7 @@ class RegistrationForm extends Component {
               className="registration-input"
               ref={this.firstInput}
               id="registration-name-input"
-              name="name"
+              name="fullname"
               required
             />
           </div>
@@ -67,7 +66,6 @@ class RegistrationForm extends Component {
             </Label>
             <Input
               className="registration-input"
-              ref={this.firstInput}
               id="registration-username-input"
               name="username"
               required
@@ -90,14 +88,14 @@ class RegistrationForm extends Component {
             />
             <div className="account-type-buttons">
               <div className="student">
-                <Input type="radio" id="student" name="role" value="students" required/>
-                <Label className="role" for="student">
+                <Input type="radio" id="student" name="role" value="student" required/>
+                <Label className="role" htmlFor="student">
                   Student
                 </Label>
               </div>
               <div className="teacher">
-                <Input type="radio" id="teacher" name="role" value="teachers" />
-                <Label className="role" for="female">
+                <Input type="radio" id="teacher" name="role" value="teacher" />
+                <Label className="role" htmlFor="female">
                   Teacher
                 </Label>
               </div>

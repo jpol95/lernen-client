@@ -1,12 +1,5 @@
-extend the expiry time
-think about implementing deleting or editing or adding words
-for adding you should make it so another word just appears on the page
-gonna figure out how to do the leanr page next, then think about how you want to display the users score on the dashboard
-shrink text--> part of making app responsive
-use classnames package
-server posts should return 201 not 200
-remember to do testing
-
-fix sign up and login error messages
-readmes
-test that language works when you add a user
+think about non latin alphabets. make sure your database is ok with them!
+and maybe think of some character popups
+make it so that the answer choices in the form are a, b, c, and d and you can select any of them to be the correct answer
+remember, correct answers are required. if user does not input one yell at them
+extension: put letters in answer choices

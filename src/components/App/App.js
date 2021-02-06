@@ -7,6 +7,7 @@ import RegistrationRoute from '../../routes/RegistrationRoute/RegistrationRoute'
 import LoginRoute from '../../routes/LoginRoute/LoginRoute'
 import DashboardRoute from '../../routes/DashboardRoute/DashboardRoute'
 import NotFoundRoute from '../../routes/NotFoundRoute/NotFoundRoute'
+
 import './App.css'
 
 export default class App extends Component {
@@ -39,6 +40,11 @@ export default class App extends Component {
             <PublicOnlyRoute
               path={'/login'}
               component={LoginRoute}
+            />
+            <PrivateRoute
+              exact
+              path={'/create-quiz'}
+              component={CreateQuizRoute}
             />
             <Route
               component={NotFoundRoute}

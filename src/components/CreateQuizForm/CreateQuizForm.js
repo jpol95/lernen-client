@@ -8,25 +8,55 @@ export default function CreateQuizForm(props) {
   const [questionList, setQuestionList] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
-  const questionTemplate = {quiz_id: quiz.id, title: "", answers: new Array(4).fill({ value: "", touched: false }), correct_answers: [], value: 0}
+  const questionTemplate = {
+    quiz_id: quiz.id,
+    title: "",
+    answers: new Array(4).fill({ value: "", touched: false }),
+    correct_answers: [],
+    value: 0,
+  };
 
   function handleSubmitSetupTitle(title, setup) {
-    QuizApiService.postQuiz({ title, setup }).then((quiz) => {
+    QuizApiService.postQuiz({ title, setup, finished: false }).then((quiz) => {
       setQuiz(quiz);
     });
   }
-    // you have to fix this to add or edit a question
-   function handleAddQuestion(question, back) {
+  // you have to fix this to add or edit a question
+  //disable new question button until parameters are met
+  async function handleAddQuestion(question) {
     const addedQuestion = { ...question, quizId };
-    QuizApiService.postQuestion(addedQuestion).then((question) => {
-      setQuestionList((prevList) => [...prevList, question]);
-      setCurrentQuestionIndex((prevQuestion) => prevQuestion + 1 + +back*-2);
-    });
+      if (currentQuestionIndex === questionList.length){
+    const resultPJ = await QuizApiService.postQuestion(addedQuestion);
+    const question = await resultPJ.json();
+    setQuestionList((prevList) => [...prevList, question]);
+      }
+    else {
+        let questionResult = await QuizApiService.patchQuestion(addedQuestion);
+        questionResult = questionResult.json();
+        setQuestionList(prevList => prevList.map(current, index => {
+            if (index === currentQuestionIndex) return questionResult
+            else return current;
+        }))
+    }
   }
-  const questionProps = {handleAddQuestion, handleGoBack, currentQuestionIndex}
+//make handle add qeustion fubction to differentiate if youre updating or adding a qeustion
+  async function finishQuiz(question) {
+    let quizResult = await QuizApiService.patchQuiz(true);
+    quizResult = await quizResult.json();
+    setQuiz(quizResult);
+    props.history.push("/");
+  }
+
+  const questionProps = {
+    finishQuiz, 
+    setCurrentQuestionIndex,
+    handleAddQuestion,
+    handleGoBack,
+    currentQuestionIndex,
+  };
   return quiz.id ? (
     <CreateQuestionForm
-      {...questionList[currentQuestionIndex] || questionTemplate}
+      {...(questionList[currentQuestionIndex] || questionTemplate)}
       {...questionProps}
     />
   ) : (

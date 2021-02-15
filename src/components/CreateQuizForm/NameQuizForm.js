@@ -4,9 +4,11 @@ import Button from "../Button/Button";
 import { Input, Label, Textarea } from "../Form/Form";
 
 
-function NameQuizForm(props) {
+export default function NameQuizForm(props) {
     const [title, setTitle] = useState({ value: props.title, touched: false });
     const [setup, setSetup] = useState({ value: props.setup, touched: false });
+
+    console.log(props)
   
     function validateTitle() {
       if (title.value.length === 0)

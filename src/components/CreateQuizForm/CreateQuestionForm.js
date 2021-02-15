@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import QuizApiService from "../../services/quiz-api-service";
 import Button from "../Button/Button";
 import { Input, Label, Textarea } from "../Form/Form";
+import Question from "./Question";
 
 
 export default function CreateQuestionForm(props) {
@@ -38,7 +39,7 @@ function validateCorrectAnswers() {
 }
 
   return (
-    <form onSubmit={handleSubmit} className="quiz-form">
+    <form onSubmit={props.handleSubmit} className="quiz-form">
       <Label htmlFor="num-Choices">How many Choices</Label>
       <Input
         defaultValue={ numChoices }

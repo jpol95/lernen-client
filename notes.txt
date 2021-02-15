@@ -4,3 +4,10 @@ make it so that the answer choices in the form are a, b, c, and d and you can se
 remember, correct answers are required. if user does not input one yell at them
 extension: put letters in answer choices
 think about having a cancel and delete button. 
+
+make questions have values
+be sure to add languages to quizzy wizzies
+
+think about if you want to make a save changes button or any of that shit, et
+
+think about updating the quiz title and language

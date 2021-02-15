@@ -19,7 +19,7 @@ export default function Question(props) {
         <div className="answer-choice">
           <Input
             checked={props.correctAnswers.includes(i)}
-            onClick={() =>
+            onClick={(e) =>
               props.setCorrectAnswers((prevList) => {
                 if (prevList.includes(e.target.value))
                   return prevList.filter((ans) => ans !== e.target.value);
@@ -30,7 +30,7 @@ export default function Question(props) {
             value={i}
           />
           <Input
-            defaultValue={choiceList[i]}
+            defaultValue={props.answers}
             onChange={(e) =>
               props.setAnswers((choiceList) =>
                 choiceList.map((current, index) => {

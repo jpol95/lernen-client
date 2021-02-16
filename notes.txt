@@ -11,3 +11,5 @@ be sure to add languages to quizzy wizzies
 think about if you want to make a save changes button or any of that shit, et
 
 think about updating the quiz title and language
+
+text in border thing

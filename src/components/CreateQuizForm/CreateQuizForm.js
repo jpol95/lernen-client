@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import QuizApiService from "../../services/quiz-api-service";
 import Button from "../Button/Button";
 import { Input, Label, Textarea } from "../Form/Form";
 import CreateQuestionForm from "./CreateQuestionForm";
 import NameQuizForm from "./NameQuizForm";
 import '../../styles/quiz-form.css'
+import UserContext from "../../contexts/UserContext";
+
 
 export default function CreateQuizForm(props) {
   const quizTemplate = {
@@ -16,6 +18,9 @@ export default function CreateQuizForm(props) {
   const [questionList, setQuestionList] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [quiz, setQuiz] = useState(quizTemplate);
+  const {user} = useContext(UserContext)
+
+  console.log(user)
 
   const questionTemplate = {
     quiz_id: quiz.id,
@@ -25,8 +30,9 @@ export default function CreateQuizForm(props) {
     value: { value: 0, touched: false },
   };
 
-  function handleSubmitSetupTitle(title, setup) {
-    QuizApiService.postQuiz({ title, setup, finished: false }).then((quiz) => {
+  function handleSubmitSetupTitle(e, title, setup) {
+    e.preventDefault();
+    QuizApiService.postQuiz({ teacher_id: user.id, title, setup, finished: false }).then((quiz) => {
       setQuiz(quiz);
     });
   }
@@ -71,6 +77,6 @@ export default function CreateQuizForm(props) {
       {...questionProps}
     />
   ) : (
-    <NameQuizForm handleSumit={handleSubmitSetupTitle} {...quiz} />
+    <NameQuizForm handleSubmit={handleSubmitSetupTitle} {...quiz} />
   );
 }

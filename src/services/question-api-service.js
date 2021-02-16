@@ -7,7 +7,8 @@ const QuestionApiService = {
     {
       method: 'POST',
       headers: {
-        'authorization': `Bearer ${TokenService.getAuthToken()}`,
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${TokenService.getAuthToken()}`,
       },
       body: JSON.stringify(quiz)
     }).then(res =>
@@ -17,11 +18,12 @@ const QuestionApiService = {
     )
   },
   patchQuiz(question) {
-    return fetch(`${config.API_ENDPOINT}/quiz/${id}`,
+    return fetch(`${config.API_ENDPOINT}/question/${id}`,
     {
       method: 'POST',
       headers: {
-        'authorization': `Bearer ${TokenService.getAuthToken()}`,
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${TokenService.getAuthToken()}`,
       },
       body: JSON.stringify(quiz)
     }).then(res =>
@@ -31,26 +33,14 @@ const QuestionApiService = {
     )
   },
   deleteQuestion(question) {
-    return fetch(`${config.API_ENDPOINT}/quiz/${id}`,
+    return fetch(`${config.API_ENDPOINT}/question/${id}`,
     {
       method: 'DELETE',
       headers: {
-        'authorization': `Bearer ${TokenService.getAuthToken()}`,
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${TokenService.getAuthToken()}`,
       },
     })
-  },
-  refreshToken() {
-    return fetch(`${config.API_ENDPOINT}/auth/token`, {
-      method: 'PUT',
-      headers: {
-        'authorization': `Bearer ${TokenService.getAuthToken()}`,
-      },
-    })
-      .then(res =>
-        (!res.ok)
-          ? res.json().then(e => Promise.reject(e))
-          : res.json()
-      )
   },
 }
 

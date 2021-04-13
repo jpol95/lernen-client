@@ -115,4 +115,6 @@ class RegistrationForm extends Component {
   }
 }
 
+//make sure that the username checks for existing usernames, and make the form responsive, and make sure that there are to types of accounts
+
 export default RegistrationForm;

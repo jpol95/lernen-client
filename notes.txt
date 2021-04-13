@@ -15,3 +15,5 @@ think about updating the quiz title and language
 text in border thing
 
 make it so that you can search for popular quizzes in specific languages
+
+maybe other teachers can leave comments under quizzes

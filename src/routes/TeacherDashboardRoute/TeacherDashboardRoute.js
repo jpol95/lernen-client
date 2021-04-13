@@ -15,10 +15,7 @@ function DashboardRoute(props){
 const userContextObj = useContext(UserContext)
 const languages = useSelector(state => state.languages)
 const dispatch = useDispatch();
-// useEffect(async () => {  
-//   const languages = await LanguageApiService.getAllLanguages();
-  
-// }, [])
+
     return (
       <section className="teacher-dashboard">
         <H1>Welcome back, {userContextObj.user.name}</H1>

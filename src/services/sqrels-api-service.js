@@ -1,16 +1,27 @@
 import config from '../config'
 import TokenService from './token-service'
 
-const LanguageApiService = {
-  getStudentSqrels(role, id) {
-    return fetch(`${config.API_ENDPOINT}/${role}/id`)
+const SqrelsService = {
+  getStudentSqrels(id) {
+    return fetch(`${config.API_ENDPOINT}/student/${id}`)
     .then(res =>
       (!res.ok)
         ? res.json().then(e => Promise.reject(e))
         : res.json()
     )
   },
+  getQuizSqrels(id) {
+    return fetch(`${config.API_ENDPOINT}/quiz/${id}`)
+    .then(res =>
+      (!res.ok)
+        ? res.json().then(e => Promise.reject(e))
+        : res.json()
+    )
+  }
 
 }
 
 export default LanguageApiService;
+
+
+//if you could be any mystical creature, which one would you be?

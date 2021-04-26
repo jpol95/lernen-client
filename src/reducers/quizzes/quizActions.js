@@ -1,8 +1,8 @@
-import { IMPORT_QUESTIONS } from './questionTypes'
+import { IMPORT_QUIZZES } from './questionTypes'
 
 export const importQuizzes = (questions = []) => {
     return {
-        type: IMPORT_QUESTIONS, 
+        type: IMPORT_QUIZZES, 
         payload: questions
     }
 }

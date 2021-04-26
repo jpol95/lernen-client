@@ -6,7 +6,7 @@ const initialState = {
 
 const quizReducer = (state, action) => {
   switch (action.type) {
-    case IMPORT_QUESTIONS:
+    case IMPORT_QUIZZES:
       return {
         ...state,
         questions: action.payload,

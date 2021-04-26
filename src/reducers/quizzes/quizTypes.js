@@ -1,2 +1,2 @@
-export const IMPORT_QUESTIONS = 'IMPORT_QUESTIONS';
+export const IMPORT_QUIZZES = 'IMPORT_QUIZZES';
 

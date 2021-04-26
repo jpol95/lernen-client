@@ -14,6 +14,7 @@ function DashboardRoute(props){
 
 const userContextObj = useContext(UserContext)
 const languages = useSelector(state => state.languages)
+const quizzes = useSelector(state => state.quizzes)
 const dispatch = useDispatch();
 
     return (
@@ -30,7 +31,7 @@ const dispatch = useDispatch();
           </div>
         </div>
         <TopResults />
-        <MyQuizzes />
+        <MyQuizzes quizzes={quizzes}/>
       </section>
     )
 }

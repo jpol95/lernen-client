@@ -12,7 +12,7 @@ import CreateQuizRoute from '../../routes/CreateQuizRoute/CreateQuizRoute'
 import './App.css'
 
 export default class App extends Component {
-  state = { hasError: false }
+  state = { hasError: false, currentLoadedUser: 0 }
 
   static getDerivedStateFromError(error) {
     console.error(error)
@@ -25,14 +25,18 @@ export default class App extends Component {
       <div className='App'>
         <Header />
         <main>
-          {hasError && (
+        {hasError && (
             <p>There was an error! Oh no!</p>
           )}
-          <Switch>
             <PrivateRoute
               exact
-              path={["/", "/teacher/:id"]}
+              path={["/teacher/:id"]}
               component={TeacherDashboardRoute}
+            />
+             <PrivateRoute
+              exact
+              path={'/create-quiz'}
+              component={CreateQuizRoute}
             />
             <PublicOnlyRoute
               path={'/register'}
@@ -42,17 +46,13 @@ export default class App extends Component {
               path={'/login'}
               component={LoginRoute}
             />
-            <PrivateRoute
-              exact
-              path={'/create-quiz'}
-              component={CreateQuizRoute}
-            />
             <Route
               component={NotFoundRoute}
             />
-          </Switch>
         </main>
       </div>
     );
   }
 }
+
+//you have to decide which route you're gonna go in terms of checking the currently loaded user

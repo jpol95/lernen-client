@@ -19,17 +19,19 @@ function TeacherDashboardRoute(props){
 const userContextObj = useContext(UserContext)
 const dispatch = useDispatch();
 const userId = props.match.params.id
+
+useEffect(() => {
+  const loadData = async () => {
+  console.log(await QuizApiService.getQuizSqrels(userId))
+  dispatch(importQuizzes(await QuizApiService.getQuiz(userId)))
+  dispatch(importScores(await SqrelsService.getQuizSqrels(userId)))
+}
+loadData()
+}, [])
 const quizzes = useSelector(state => state.quizzes)
 const scores = useSelector(state => state.scores)
-
-console.log(userId)
-const loadData = () => {
-  dispatch(importQuizzes(QuizApiService.getQuiz(userId)))
-  dispatch(importScores(SqrelsService.getQuizSqrels(userId)))
-}
-useEffect(loadData, [])
-// console.log(quizzes);
-// console.log(scores);
+console.log(quizzes);
+console.log(scores);
     return (
       <section className="teacher-dashboard">
         <H1>Welcome back, {userContextObj.user.name}</H1>

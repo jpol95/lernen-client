@@ -9,7 +9,7 @@ export default function QuizViewRoute(props) {
         }
         loadData()
     }, [])
-    return <ul>
-        {questions.map(question => question.title)}
+    return <ul className="quiz-view">
+        {questions.map(question => <li className="question-view">{question.title}</li>)}
     </ul>
 }

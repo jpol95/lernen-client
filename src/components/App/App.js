@@ -10,6 +10,7 @@ import NotFoundRoute from '../../routes/NotFoundRoute/NotFoundRoute'
 import CreateQuizRoute from '../../routes/CreateQuizRoute/CreateQuizRoute'
 
 import './App.css'
+import Landing from '../../routes/LandingRoute/LandingRoute'
 
 export default class App extends Component {
   state = { hasError: false, currentLoadedUser: 0 }
@@ -28,9 +29,10 @@ export default class App extends Component {
         {hasError && (
             <p>There was an error! Oh no!</p>
           )}
+          <Switch>
             <PrivateRoute
               exact
-              path={["/teacher/:id"]}
+              path={"/teacher/:id"}
               component={TeacherDashboardRoute}
             />
              <PrivateRoute
@@ -46,9 +48,14 @@ export default class App extends Component {
               path={'/login'}
               component={LoginRoute}
             />
+            <PublicOnlyRoute
+              path={'/'}
+              component={Landing}
+            />
             <Route
               component={NotFoundRoute}
             />
+            </Switch>
         </main>
       </div>
     );

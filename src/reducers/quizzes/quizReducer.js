@@ -1,19 +1,19 @@
-import { IMPORT_QUESTIONS } from "./questionTypes";
+import { IMPORT_QUIZZES } from "./quizTypes";
 
 const initialState = {
-  questions: [],
+  quizzes: [],
 };
 
-const quizReducer = (state, action) => {
+const quizReducer = (state = initialState, action) => {
   switch (action.type) {
     case IMPORT_QUIZZES:
       return {
         ...state,
-        questions: action.payload,
+        quizzes: action.payload,
       };
     default:
       return state;
   }
 };
 
-export default questionsReducer;
+export default quizReducer;

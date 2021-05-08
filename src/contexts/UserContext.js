@@ -67,6 +67,7 @@ export class UserProvider extends Component {
       id: jwtPayload.user_id,
       name: jwtPayload.name,
       username: jwtPayload.sub,
+      role: jwtPayload.role
     })
     IdleService.regiserIdleTimerResets()
     TokenService.queueCallbackBeforeExpiry(() => {
@@ -118,3 +119,5 @@ export class UserProvider extends Component {
     )
   }
 }
+
+//figure out this user and context shit

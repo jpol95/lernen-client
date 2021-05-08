@@ -4,7 +4,7 @@ const initialState = {
   questions: [],
 };
 
-const questionsReducer = (state, action) => {
+const questionsReducer = (state = initialState, action) => {
   switch (action.type) {
     case IMPORT_QUESTIONS:
       return {

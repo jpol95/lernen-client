@@ -33,6 +33,20 @@ const QuizApiService = {
         : res.json()
     )
   },
+
+  getQuiz(id) {
+    return fetch(`${config.API_ENDPOINT}/quiz/user/${id}`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${TokenService.getAuthToken()}`,
+      }
+    }).then(res =>
+      (!res.ok)
+        ? res.json().then(e => Promise.reject(e))
+        : res.json()
+    )
+  }
 }
 
 export default QuizApiService

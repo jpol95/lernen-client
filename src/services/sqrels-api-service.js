@@ -3,7 +3,7 @@ import TokenService from './token-service'
 
 const SqrelsService = {
   getStudentSqrels(id) {
-    return fetch(`${config.API_ENDPOINT}/student/${id}`)
+    return fetch(`${config.API_ENDPOINT}/sqrels/student/${id}`)
     .then(res =>
       (!res.ok)
         ? res.json().then(e => Promise.reject(e))
@@ -11,7 +11,15 @@ const SqrelsService = {
     )
   },
   getQuizSqrels(id) {
-    return fetch(`${config.API_ENDPOINT}/quiz/${id}`)
+    return fetch(`${config.API_ENDPOINT}/sqrels/quiz/${id}`)
+    .then(res =>
+      (!res.ok)
+        ? res.json().then(e => Promise.reject(e))
+        : res.json()
+    )
+  }, 
+  getTeacherSqrels(id) {
+    return fetch(`${config.API_ENDPOINT}/sqrels/teacher/${id}`)
     .then(res =>
       (!res.ok)
         ? res.json().then(e => Promise.reject(e))
@@ -21,7 +29,7 @@ const SqrelsService = {
 
 }
 
-export default LanguageApiService;
+export default SqrelsService;
 
 
 //if you could be any mystical creature, which one would you be?

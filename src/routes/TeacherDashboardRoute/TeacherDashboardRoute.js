@@ -7,16 +7,29 @@ import '../../styles/db.css'
 import thinking from '../../styles/thinking.png'
 import quiz from '../../styles/quiz.png'
 import H1 from '../../components/H1'
+import QuizApiService from "../../services/quiz-api-service";
+import { importQuizzes } from "../../reducers/quizzes/quizActions";
+import { importScores } from "../../reducers/scores/scoreActions";
+import SqrelsService from "../../services/sqrels-api-service";
 
 
 
-function DashboardRoute(props){
+function TeacherDashboardRoute(props){
 
 const userContextObj = useContext(UserContext)
-const languages = useSelector(state => state.languages)
-const quizzes = useSelector(state => state.quizzes)
 const dispatch = useDispatch();
+const userId = props.match.params.id
+const quizzes = useSelector(state => state.quizzes)
+const scores = useSelector(state => state.scores)
 
+console.log(userId)
+const loadData = () => {
+  dispatch(importQuizzes(QuizApiService.getQuiz(userId)))
+  dispatch(importScores(SqrelsService.getQuizSqrels(userId)))
+}
+useEffect(loadData, [])
+// console.log(quizzes);
+// console.log(scores);
     return (
       <section className="teacher-dashboard">
         <H1>Welcome back, {userContextObj.user.name}</H1>
@@ -30,10 +43,10 @@ const dispatch = useDispatch();
           <img src={quiz} />
           </div>
         </div>
-        <TopResults />
-        <MyQuizzes quizzes={quizzes}/>
+        {/* <TopResults results={results}/>
+        <MyQuizzes quizzes={quizzes}/> */}
       </section>
     )
 }
 
-export default DashboardRoute;
+export default TeacherDashboardRoute;

@@ -1,0 +1,2 @@
+export const IMPORT_SCORES = 'IMPORT_SCORES';
+

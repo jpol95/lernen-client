@@ -17,3 +17,5 @@ text in border thing
 make it so that you can search for popular quizzes in specific languages
 
 maybe other teachers can leave comments under quizzes
+
+need to make a quiz view mode as well as a quiz take mode

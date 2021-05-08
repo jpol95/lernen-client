@@ -11,6 +11,7 @@ import CreateQuizRoute from '../../routes/CreateQuizRoute/CreateQuizRoute'
 
 import './App.css'
 import Landing from '../../routes/LandingRoute/LandingRoute'
+import QuizViewRoute from '../../routes/QuizViewRoute/QuizViewRoute'
 
 export default class App extends Component {
   state = { hasError: false, currentLoadedUser: 0 }
@@ -30,6 +31,10 @@ export default class App extends Component {
             <p>There was an error! Oh no!</p>
           )}
           <Switch>
+          <PrivateRoute 
+              path={'/quizview/:id'}
+              component={QuizViewRoute}
+              />
             <PrivateRoute
               exact
               path={"/teacher/:id"}

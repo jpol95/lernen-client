@@ -1,0 +1,15 @@
+import React, { useEffect, useState } from "react";
+import QuestionApiService from "../../services/question-api-service";
+
+export default function QuizViewRoute(props) {
+    const [questions, setQuestions] = useState([])
+    useEffect(() => {
+        const loadData = async () => {
+            setQuestions(await QuestionApiService.getQuizQuestions(props.match.params.id))
+        }
+        loadData()
+    }, [])
+    return <ul>
+        {questions.map(question => question.title)}
+    </ul>
+}

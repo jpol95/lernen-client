@@ -3,7 +3,7 @@ import TokenService from './token-service'
 
 const QuestionApiService = {
   getQuizQuestions(quizId){
-    return fetch(`${config.API_ENDPOINT}quiz/${quizId}`,
+    return fetch(`${config.API_ENDPOINT}/question/quiz/${quizId}`,
     {
       method: 'GET',
       headers: {
@@ -24,7 +24,7 @@ const QuestionApiService = {
         'content-type': 'application/json',
         'Authorization': `Bearer ${TokenService.getAuthToken()}`,
       },
-      body: JSON.stringify(quiz)
+      body: JSON.stringify(question)
     }).then(res =>
       (!res.ok)
         ? res.json().then(e => Promise.reject(e))
@@ -32,21 +32,21 @@ const QuestionApiService = {
     )
   },
   patchQuiz(question) {
-    return fetch(`${config.API_ENDPOINT}/question/${id}`,
+    return fetch(`${config.API_ENDPOINT}/question/${question.id}`,
     {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
         'Authorization': `Bearer ${TokenService.getAuthToken()}`,
       },
-      body: JSON.stringify(quiz)
+      body: JSON.stringify(question)
     }).then(res =>
       (!res.ok)
         ? res.json().then(e => Promise.reject(e))
         : res.json()
     )
   },
-  deleteQuestion(question) {
+  deleteQuestion(id) {
     return fetch(`${config.API_ENDPOINT}/question/${id}`,
     {
       method: 'DELETE',

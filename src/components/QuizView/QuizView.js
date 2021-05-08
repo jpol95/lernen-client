@@ -5,7 +5,10 @@ export default function(props) {
     const [questions, setQuestions] = useState([])
     useEffect(() => {
         loadData = async () => {
-            setQuestions(await QuestionApiService)
+            setQuestions(await QuestionApiService.getQuizQuestions(props.id))
         }
     }, [])
+    return <ul>
+        {questions.map(question => question.title)}
+    </ul>
 }

@@ -5,6 +5,8 @@ body {
   box-sizing: border-box;
 }
 
+
+
 html {
   padding: 0px;
   margin: 0px;
@@ -28,7 +30,6 @@ html {
 
 body {
     box-sizing: border-box;
-    overflow: hidden;
 }
 
 .darker {

@@ -5,6 +5,16 @@
 .question-view {
     border: 1px solid black;
     box-shadow: lightblue;
+    background-color: #F0F2F5;
+    margin: 10px;
+    border-radius: 5px;
+    padding: 20px;
+    padding-left: 30%;
+}
+.quiz-view {
+    padding: 0% 20%;
+    list-style: none;
 }
 
 /* finish styling, keep going
+*/

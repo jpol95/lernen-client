@@ -2,8 +2,31 @@ import config from '../config'
 import TokenService from './token-service'
 
 const SqrelsService = {
+  postStudentSqrel(sqrel) {
+    return fetch(`${config.API_ENDPOINT}/sqrels`,
+    {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${TokenService.getAuthToken()}`,
+      },
+      body: sqrel
+    }).then(res =>
+      (!res.ok)
+        ? res.json().then(e => Promise.reject(e))
+        : res.json()
+    )
+  },
   getStudentSqrels(id) {
     return fetch(`${config.API_ENDPOINT}/sqrels/student/${id}`)
+    .then(res =>
+      (!res.ok)
+        ? res.json().then(e => Promise.reject(e))
+        : res.json()
+    )
+  },
+  getSqrelById(id) {
+    return fetch(`${config.API_ENDPOINT}/sqrels/${id}`)
     .then(res =>
       (!res.ok)
         ? res.json().then(e => Promise.reject(e))

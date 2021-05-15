@@ -3,6 +3,7 @@ import TokenService from './token-service'
 
 const SqrelsService = {
   postStudentSqrel(sqrel) {
+    console.log(sqrel)
     return fetch(`${config.API_ENDPOINT}/sqrels`,
     {
       method: 'POST',

@@ -21,10 +21,11 @@ export default function QuizViewRoute(props) {
   }, []);
 
   async function onSubmit(e) {
-    let score = selected.reduce((total, current) => {
-        return total + current.value * Number(current.correct)
-    })
-        let sqrel = {quiz_id: props.match.params.id, student_id: 3, score,  date_completed: new Date()}
+    let score = selected.reduce((total, current, index) => {
+        return total + questions[index].value * Number(current === questions[index].correct_answer)
+    }, 0)
+        let sqrel = {quiz_id: Number(props.match.params.id), student_id: 3, score,  date_completed: new Date()}
+        console.log(sqrel)
         sqrel = await SqrelsService.postStudentSqrel(sqrel)
         props.history.push(`/sqrels/${sqrel.id}`)
     

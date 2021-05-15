@@ -33,7 +33,7 @@ useEffect(() => {
 loadData()
 }, [])
 
-console.log(quizzes, scores, "hello")
+// console.log(quizzes, scores, "hello")
     return (
       <section className="teacher-dashboard">
         <H1>Welcome back, {userContextObj.user.name}</H1>

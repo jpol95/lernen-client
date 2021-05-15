@@ -3,7 +3,7 @@ import TokenService from './token-service'
 
 const SqrelsService = {
   postStudentSqrel(sqrel) {
-    console.log(sqrel)
+    // console.log(sqrel)
     return fetch(`${config.API_ENDPOINT}/sqrels`,
     {
       method: 'POST',
@@ -11,7 +11,7 @@ const SqrelsService = {
         'content-type': 'application/json',
         'Authorization': `Bearer ${TokenService.getAuthToken()}`,
       },
-      body: sqrel
+      body:  JSON.stringify(sqrel)
     }).then(res =>
       (!res.ok)
         ? res.json().then(e => Promise.reject(e))

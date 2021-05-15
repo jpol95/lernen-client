@@ -24,22 +24,23 @@ export default function QuizViewRoute(props) {
     let score = selected.reduce((total, current, index) => {
         return total + questions[index].value * Number(current === questions[index].correct_answer)
     }, 0)
-        let sqrel = {quiz_id: Number(props.match.params.id), student_id: 3, score,  date_completed: new Date()}
-        console.log(sqrel)
-        sqrel = await SqrelsService.postStudentSqrel(sqrel)
-        props.history.push(`/sqrels/${sqrel.id}`)
+        let sqrel = {answers: selected, quiz_id: Number(props.match.params.id), student_id: 3, score,  date_completed: new Date()}
+        // console.log(sqrel)
+        let returnedSqrel = await SqrelsService.postStudentSqrel(sqrel)
+        console.log(returnedSqrel)
+        props.history.push(`/quiz-results/${returnedSqrel.id}`)
     
   }
 
 //YOU HAVE A STUDENT ID HARDCODED IN. MAKE SURE TO CHANGE THAT WHEN YOU 
 //TEST THIS ON A STUDENT ACCOUNT
 
-  console.log(selected);
+  // console.log(selected);
   function onAnswer(e, index) {
     e.persist();
     setSelected((prevSelected) =>
       prevSelected.map((current, sIndex) => {
-        console.log(e);
+        // console.log(e);
         if (index !== sIndex) return current;
         else
           return Number(e.target.value)

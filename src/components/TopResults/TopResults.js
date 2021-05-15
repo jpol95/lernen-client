@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 export default function TopResults(props) {
-    console.log(props)
+    // console.log(props)
     return <>
     <ul className={"mytopresults-list"}>
     {

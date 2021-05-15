@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import QuizView from '../../components/QuizView/QuizView';
 import QuestionApiService from '../../services/question-api-service';
 import SqrelsService from '../../services/sqrels-api-service';
@@ -16,9 +16,10 @@ function QuizResultsRoute(props) {
         };
         loadData();
       }, []);
+      console.log(sqrel, questions)
     return (
         <div>
-            <QuizView sqrel={sqrel} questions={questions} />
+            {questions && <QuizView sqrel={sqrel} questions={questions} />}
         </div>
     );
 }

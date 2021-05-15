@@ -1,9 +1,9 @@
 import React from 'react';
 
 function QuizView(props) {
-    const findColor = (aIndex) => {
-        if (props.selected.correct_answer === aIndex) return "green"
-        if (props.selected.attempted_answer === aIndex) return "red"
+    const findColor = (qIndex, aIndex) => {
+        if (props.questions[qIndex].correct_answer === aIndex) return "green"
+        if (props.sqrel.answers[qIndex] === aIndex) return "red"
         return ""
     }
     return (
@@ -24,7 +24,7 @@ function QuizView(props) {
                     value={aIndex}
                     disabled={!!props.selected}
                   />
-                  <label className={props.selected ? findColor(aIndex) : ""} htmlFor={index}>
+                  <label className={props.sqrel ? findColor(index, aIndex) : ""} htmlFor={index}>
                     {" "}
                     {answer}
                   </label>

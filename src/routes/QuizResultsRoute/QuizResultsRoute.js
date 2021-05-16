@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import QuizView from '../../components/QuizView/QuizView';
 import QuestionApiService from '../../services/question-api-service';
 import SqrelsService from '../../services/sqrels-api-service';
+import '../QuizViewRoute/QuizView.css'
 
 function QuizResultsRoute(props) {
     const [sqrel, setSqrel] = useState()
@@ -18,9 +19,15 @@ function QuizResultsRoute(props) {
       }, []);
       console.log(sqrel, questions)
     return (
-        <div>
-            {questions && <QuizView sqrel={sqrel} questions={questions} />}
-        </div>
+            <>
+            {questions &&
+            <>
+            <QuizView sqrel={sqrel} questions={questions} />
+            <div className="score">Score: {sqrel.score}/{questions.reduce((total, current) => total + current.value, 0)}</div>
+            </>
+            } 
+            </>
+   
     );
 }
 

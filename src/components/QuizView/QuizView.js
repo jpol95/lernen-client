@@ -6,6 +6,13 @@ function QuizView(props) {
         if (props.sqrel.answers[qIndex] === aIndex) return "red"
         return ""
     }
+
+    const findSymbol = (qIndex, aIndex) => {
+      if (props.questions[qIndex].correct_answer === aIndex) return <div className="green symbol"> &#10004;</div>
+      if (props.sqrel.answers[qIndex] === aIndex) return <div className="red symbol"> &#10006;</div>
+      return ""
+  }
+
     return (
         <ul className="quiz-view">
         {props.questions.map((question, index) => (
@@ -15,7 +22,9 @@ function QuizView(props) {
             <form>
               {question.answers.split(",").map((answer, aIndex) => (
                 <>
+                {props.sqrel && findSymbol(index, aIndex)}
                   <input
+                    className={!!props.sqrel ? "hidden": ""}
                     onChange={(e) => props.onAnswer(e, index)}
                     key={`answer${index}${aIndex}`}
                     name={`question${index}`}

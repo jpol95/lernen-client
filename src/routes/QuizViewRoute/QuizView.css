@@ -13,5 +13,28 @@
     list-style: none;
 }
 
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+.red, .green {
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+.symbol {
+    display: inline;
+}
+
+.score {
+    text-align: center;
+}
+
 /* finish styling, keep going
 */

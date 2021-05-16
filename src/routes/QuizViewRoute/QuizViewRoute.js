@@ -50,6 +50,7 @@ export default function QuizViewRoute(props) {
   }
   return (
     <>
+    <button onClick={() => props.history.goBack()}className="back-button">Back</button>
 <QuizView onAnswer={onAnswer} questions={questions} />
       <button disabled={selected.includes(-1)} className="submit" type="submit" onClick={onSubmit}>
         {" "}

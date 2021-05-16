@@ -2,12 +2,11 @@ import React, { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-export default function TopResults(props) {
-    // console.log(props)
+export default function TopResultsTeacher(props) {
     return <>
     <ul className={"mytopresults-list"}>
     {
-    props.scores.map(score => <li className="score-entry" key={score.sqrelId}>
+    props.scores.map(score => <li className="score-entry" key={score.id}>
         {score.score}
         /{score.rating}
         /{score.date_completed}

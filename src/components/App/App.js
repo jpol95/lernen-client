@@ -13,6 +13,7 @@ import "./App.css";
 import Landing from "../../routes/LandingRoute/LandingRoute";
 import QuizViewRoute from "../../routes/QuizViewRoute/QuizViewRoute";
 import QuizResultsRoute from "../../routes/QuizResultsRoute/QuizResultsRoute";
+import StudentDashboardRoute from "../../routes/StudentDashboardRoute/StudentDashboardRoute";
 
 export default class App extends Component {
   state = { hasError: false, currentLoadedUser: 0 };
@@ -32,6 +33,7 @@ export default class App extends Component {
           <Switch>
             <PrivateRoute path={"/quizview/:id"} component={QuizViewRoute} />
             <PrivateRoute path={"/quiz-results/:id"} component={QuizResultsRoute} />
+            <PrivateRoute path={"/student/:id"} component={StudentDashboardRoute} />
             <PrivateRoute
               exact
               path={"/teacher/:id"}

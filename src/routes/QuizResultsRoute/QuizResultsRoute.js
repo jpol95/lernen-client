@@ -20,6 +20,7 @@ function QuizResultsRoute(props) {
       console.log(sqrel, questions)
     return (
             <>
+            <button onClick={() => props.history.goBack()}className="back-button">Back</button>
             {questions &&
             <>
             <QuizView sqrel={sqrel} questions={questions} />

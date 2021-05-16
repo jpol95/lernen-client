@@ -19,3 +19,6 @@ make it so that you can search for popular quizzes in specific languages
 maybe other teachers can leave comments under quizzes
 
 need to make a quiz view mode as well as a quiz take mode
+
+
+5/16 todo: work on the search bar, make search bar by language or by teacher name/username

@@ -11,23 +11,20 @@ import QuizApiService from "../../services/quiz-api-service";
 import { importQuizzes } from "../../reducers/quizzes/quizActions";
 import { importScores } from "../../reducers/scores/scoreActions";
 import SqrelsService from "../../services/sqrels-api-service";
-import TopResults from "../../components/TopResultsTeacher/TopResultsTeacher";
+import TopResultsStudent from "../../components/TopResultsStudent/TopResultsStudent";
 import MyQuizzes from "../../components/MyQuizzes/MyQuizzes";
 
 
 
-function TeacherDashboardRoute(props){
+function StudentDashboardRoute(props){
 
 const userContextObj = useContext(UserContext)
 const dispatch = useDispatch();
 const userId = props.match.params.id
-const [quizzes, setQuizzes] = useState([])
 const [scores, setScores] = useState([])
 useEffect(() => {
   const loadData = async () => {
-  setQuizzes(await QuizApiService.getQuiz(userId))
-  setScores(await SqrelsService.getTeacherSqrels(userId))
-  dispatch(importQuizzes(quizzes))
+  setScores(await SqrelsService.getStudentSqrels(userId))
   dispatch(importScores(scores))
 }
 loadData()
@@ -35,7 +32,7 @@ loadData()
 
 // console.log(quizzes, scores, "hello")
     return (
-      <section className="teacher-dashboard">
+      <section className="student-dashboard">
         <H1>Welcome back, {userContextObj.user.name}</H1>
         <div className="dashboard-links">
           <div className="results">
@@ -47,10 +44,9 @@ loadData()
           <img src={quiz} />
           </div>
         </div>
-        <TopResults scores={scores}/>
-        <MyQuizzes quizzes={quizzes}/>
+        <TopResultsStudent scores={scores}/>
       </section>
     )
 }
 
-export default TeacherDashboardRoute;
+export default StudentDashboardRoute;

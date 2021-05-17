@@ -18,3 +18,27 @@
     margin-bottom: 20px;
     font-size: 30px;
 }
+
+.search-input {
+    display: block;
+    margin: auto;
+}
+
+.search-option {
+    margin-left: 10px;
+}
+
+.search-submit {
+    display: block;
+    margin: auto
+}
+
+.search-result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: solid 1px black;
+    margin: 5px 20px;
+    padding: 10px 0px;
+    border-radius: 20px;
+}

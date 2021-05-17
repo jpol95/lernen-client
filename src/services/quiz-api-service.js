@@ -46,6 +46,19 @@ const QuizApiService = {
         ? res.json().then(e => Promise.reject(e))
         : res.json()
     )
+  }, 
+  getQuizzesByLanguage(language) {
+    return fetch(`${config.API_ENDPOINT}/quiz/language/${language}`, {
+      method: 'GET',
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': `Bearer ${TokenService.getAuthToken()}`,
+      }
+    }).then(res =>
+      (!res.ok)
+        ? res.json().then(e => Promise.reject(e))
+        : res.json()
+    )
   }
 }
 

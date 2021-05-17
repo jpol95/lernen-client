@@ -14,6 +14,7 @@ import Landing from "../../routes/LandingRoute/LandingRoute";
 import QuizViewRoute from "../../routes/QuizViewRoute/QuizViewRoute";
 import QuizResultsRoute from "../../routes/QuizResultsRoute/QuizResultsRoute";
 import StudentDashboardRoute from "../../routes/StudentDashboardRoute/StudentDashboardRoute";
+import SearchResultsRoute from "../../routes/SearchResultsRoute/SearchResultsRoute";
 
 export default class App extends Component {
   state = { hasError: false, currentLoadedUser: 0 };
@@ -31,6 +32,7 @@ export default class App extends Component {
         <main>
           {hasError && <p>There was an error! Oh no!</p>}
           <Switch>
+            <PrivateRoute path={"/search/:query"} component={SearchResultsRoute} />
             <PrivateRoute path={"/quizview/:id"} component={QuizViewRoute} />
             <PrivateRoute path={"/quiz-results/:id"} component={QuizResultsRoute} />
             <PrivateRoute path={"/student/:id"} component={StudentDashboardRoute} />

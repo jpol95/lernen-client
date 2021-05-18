@@ -24,7 +24,7 @@ export default function QuizViewRoute(props) {
     let score = selected.reduce((total, current, index) => {
         return total + questions[index].value * Number(current === questions[index].correct_answer)
     }, 0)
-        let sqrel = {answers: selected, quiz_id: Number(props.match.params.id), student_id: 3, score,  date_completed: new Date()}
+        let sqrel = {answers: selected, quiz_id: Number(props.match.params.id), student_id: userContext.user.id, score,  date_completed: new Date()}
         // console.log(sqrel)
         let returnedSqrel = await SqrelsService.postStudentSqrel(sqrel)
         console.log(returnedSqrel)
@@ -50,7 +50,7 @@ export default function QuizViewRoute(props) {
   }
   return (
     <>
-    <button onClick={() => props.history.goBack()}className="back-button">Back</button>
+    <button onClick={() => props.history.goBack()} className="back-button">Back</button>
 <QuizView onAnswer={onAnswer} questions={questions} />
       <button disabled={selected.includes(-1)} className="submit" type="submit" onClick={onSubmit}>
         {" "}

@@ -1,0 +1,10 @@
+.create-question {
+    display: flex;
+    flex-direction: column;
+    border: solid 2px black;
+    margin: 10%;
+}
+
+.create-question label, .create-question input {
+    margin: 0px 100px;
+}

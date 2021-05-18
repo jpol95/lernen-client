@@ -32,6 +32,7 @@ export default class App extends Component {
         <main>
           {hasError && <p>There was an error! Oh no!</p>}
           <Switch>
+            <PrivateRoute path={"/create-quiz"} component={CreateQuizRoute} />
             <PrivateRoute path={"/search/:query"} component={SearchResultsRoute} />
             <PrivateRoute path={"/quizview/:id"} component={QuizViewRoute} />
             <PrivateRoute path={"/quiz-results/:id"} component={QuizResultsRoute} />

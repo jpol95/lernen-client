@@ -1,40 +1,39 @@
 import React, { useEffect, useState } from "react";
 
 function CreateQuestionForm(props) {
+  console.log(props)
   const [answers, setAnswers] = useState(
-    props.answers || new Array(4).fill("")
+    {touched: false, value: props.question.answers}
   );
-  const [value, setValue] = useState(0);
-  const [title, setTitle] = useState(props.title || "");
-  const [error, setError] = useState([
-    false,
-    "Please fill in all required fields",
-  ]);
+  const [value, setValue] = useState(1);
+  const [title, setTitle] = useState({touched: false, value: props.question.title});
 
   useEffect(() => {
     props.setQuestionList((questionList) => {
       // console.log(props.currentIndex)
       return questionList.map((question, index) => {
         if (props.currentIndex !== index) return question;
-        return { answers, value, title };
+        return { ...question, answers: answers.value, value: value.value, title: title.value };
       });
     });
   }, [answers, value, title]);
 
   const editAnswer = (e, i) => {
-    let answersCopy = [...answers];
+    let answersCopy = [...answers.value];
     answersCopy[i] = e.target.value;
-    setAnswers(answersCopy);
+    setAnswers({touched: true, value: answersCopy});
   };
 
   const editTitle = (e) => {
-    setTitle(e.target.value);
+    setTitle({touched: true, value: e.target.value});
   };
 
   const editValue = (e) => {
     setValue(Number(e.target.value));
   };
 
+  const answersError = answers.value.includes("") ? <div className="error">Please fill out all answer choices</div> : ""
+  const titleError = title.value === "" ? <div className="error">Please fill out title to question </div> : ""
   return (
     <form className="create-question">
       <div className="answer">
@@ -42,59 +41,35 @@ function CreateQuestionForm(props) {
         <label htmlFor="title">Title </label>{" "}
         <input
           onChange={editTitle}
-          defaultValue={title}
+          defaultValue={title.value}
           id="title"
           type="text"
         />{" "}
       </div>
+      {title.touched && titleError}
       <div className="answer">
         <label htmlFor="value">Value of question </label>
         <input
           defaultValue={value}
           id="value"
+          min="1"
           onChange={editValue}
           type="number"
         />
       </div>
-      <div className="answer">
-        <label htmlFor="A">A </label>
+      { answers.value.map((current, index)=> <div className="answer">
+        <label htmlFor={String.fromCharCode(65 + index)}>{String.fromCharCode(65 + index)} </label>
         <input
-          defaultValue={answers[0]}
-          id="A"
-          onChange={(e) => editAnswer(e, 0)}
+          defaultValue={current}
+          id={String.fromCharCode(65 + index)}
+          onChange={(e) => editAnswer(e, index)}
           type="text"
         />
-      </div>
-      <div className="answer">
-        <label htmlFor="B">B </label>
-        <input
-          defaultValue={answers[1]}
-          id="B"
-          onChange={(e) => editAnswer(e, 1)}
-          type="text"
-        />
-      </div>
-      <div className="answer">
-        <label htmlFor="C">C </label>
-        <input
-          defaultValue={answers[2]}
-          id="C"
-          onChange={(e) => editAnswer(e, 2)}
-          type="text"
-        />{" "}
-      </div>
-      <div className="answer">
-        <label htmlFor="D">D </label>
-        <input
-          defaultValue={answers[3]}
-          id="D"
-          onChange={(e) => editAnswer(e, 3)}
-          type="text"
-        />{" "}
-      </div>
+      </div>)}
+      {answers.touched && answersError}
       <div className="quiz-buttons">
-        <button> &#171; Previous Question </button>
-        <button> Create Next Question &#187;</button>
+        <button disabled={titleError || answersError} onClick={() => props.moveQuestion(true)}> &#171; Previous Question </button>
+        <button disabled={titleError || answersError} onClick={() => props.moveQuestion(false)}> Create Next Question &#187;</button>
       </div>
     </form>
   );

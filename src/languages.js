@@ -182,9 +182,9 @@ let languagesObject = {'mandarin chinese': 1,
 'min dong chinese': 90,
 'sylheti': 91,
 }
-for (let i = 0; i < languages.length; i++){
-    languagesObject += `'${languages[i]}': ${i + 1}, \n`
-}
+// for (let i = 0; i < languages.length; i++){
+//     languagesObject += `'${languages[i]}': ${i + 1}, \n`
+// }
 
 export {
     languagesObject

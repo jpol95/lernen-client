@@ -15,7 +15,7 @@ import QuizViewRoute from "../../routes/QuizViewRoute/QuizViewRoute";
 import QuizResultsRoute from "../../routes/QuizResultsRoute/QuizResultsRoute";
 import StudentDashboardRoute from "../../routes/StudentDashboardRoute/StudentDashboardRoute";
 import SearchResultsRoute from "../../routes/SearchResultsRoute/SearchResultsRoute";
-import store from '../../../'
+
 
 
 export default class App extends Component {

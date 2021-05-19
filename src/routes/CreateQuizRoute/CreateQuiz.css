@@ -32,3 +32,7 @@
     text-align: center; 
 }
 
+.create-quiz .languages {
+    margin: auto;
+    display: block;
+}

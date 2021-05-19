@@ -10,7 +10,25 @@
     margin: 0px 100px;
 }
 
-.create-question button {
-    display: flex;
-    justify-self: center;
+.create-quiz button {
+    /* display: flex; */
+    /* justify-self: center; */
+    display: block;
+    margin: auto;
 }
+
+.create-quiz .quiz-buttons {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.setup {
+    display: block;
+    margin: auto;
+}
+
+.create-quiz label{
+    text-align: center; 
+}
+

@@ -31,7 +31,7 @@ const QuestionApiService = {
         : res.json()
     )
   },
-  patchQuiz(question) {
+  patchQuestion(question) {
     return fetch(`${config.API_ENDPOINT}/question/${question.id}`,
     {
       method: 'POST',

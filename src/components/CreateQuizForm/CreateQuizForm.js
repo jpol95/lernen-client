@@ -46,20 +46,18 @@ function CreateQuizForm(props) {
 
   const moveQuestion = async (e, back) => {
     e.preventDefault()
-    console.log("Before")
+    // console.log("Before")
     const updatedQuiz = await QuizApiService.patchQuiz(quiz.id, {
       ...quiz,
       title,
       setUp,
       language_id: language,
     });
-    console.log("After")
-   
+    // console.log("After")
     if (questionList[currentIndex].id !== undefined) {
-      console.log("first")
+      // console.log("first")
       await QuestionApiService.patchQuestion(questionList[currentIndex]);
     } else {
-      console.log("second")
       await QuestionApiService.postQuestion(questionList[currentIndex]);
     }
     if (currentIndex === questionList.length - 1) {
@@ -69,7 +67,6 @@ function CreateQuizForm(props) {
   };
   return (
     <div className="create-quiz">
-      {/* {console.log(questionList)} */}
       <label className="setup" htmlFor="setup">
         {" "}
         SetUp:{" "}
@@ -92,7 +89,7 @@ function CreateQuizForm(props) {
         {/* {console.log(languagesObject)} */}
         {languages.map((language) => {
           return (
-            <option value={languagesObject[language]}>
+            <option key={languagesObject[language]} value={languagesObject[language]}>
               {language.charAt(0).toUpperCase() +
                 language.substring(1, language.length)}
             </option>

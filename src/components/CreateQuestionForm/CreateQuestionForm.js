@@ -8,18 +8,15 @@ function CreateQuestionForm(props) {
   const [value, setValue] = useState(1);
   const [title, setTitle] = useState({touched: false, value: props.question.title});
   const [correctAnswer, setCorrectAnswer] = useState(-1)
-
-  console.log(correctAnswer)
+  console.log(props.question)
   useEffect(() => {
     props.setQuestionList((questionList) => {
-      // console.log(props.currentIndex)
       return questionList.map((question, index) => {
         if (props.currentIndex !== index) return question;
         return { ...question, answers: answers.value, value: value, title: title.value, correct_answer: correctAnswer };
       });
     });
-  }, [answers, value, title]);
-
+  }, [answers, value, title, correctAnswer]); 
   const editAnswer = (e, i) => {
     let answersCopy = [...answers.value];
     answersCopy[i] = e.target.value;
@@ -37,13 +34,13 @@ function CreateQuestionForm(props) {
   const answersError = answers.value.includes("") ? <div className="error">Please fill out all answer choices</div> : ""
   const titleError = title.value === "" ? <div className="error">Please fill out title to question </div> : ""
   return (
-    <form className="create-question">
+    <form key={props.currentIndex} className="create-question">
       <div className="answer">
         {" "}
         <label htmlFor="title">Title </label>{" "}
         <input
           onChange={editTitle}
-          defaultValue={title.value}
+          defaultValue={props.question.title}
           id="title"
           type="text"
         />{" "}
@@ -52,7 +49,7 @@ function CreateQuestionForm(props) {
       <div className="answer">
         <label htmlFor="value">Value of question </label>
         <input
-          defaultValue={value}
+          defaultValue={props.question.value}
           id="value"
           min="1"
           onChange={editValue}
@@ -62,7 +59,8 @@ function CreateQuestionForm(props) {
       { answers.value.map((current, index)=> <div className="answer">
         <label htmlFor={String.fromCharCode(65 + index)}>{String.fromCharCode(65 + index)} </label>
         <input
-          defaultValue={current}
+          key={index}
+          defaultValue={props.question.answers[index]}
           id={String.fromCharCode(65 + index)}
           onChange={(e) => editAnswer(e, index)}
           type="text"
@@ -71,8 +69,8 @@ function CreateQuestionForm(props) {
       </div>)}
       {answers.touched && answersError}
       <div className="quiz-buttons">
-        <button disabled={titleError || answersError} onClick={(e) => props.moveQuestion(e, true)}> &#171; Previous Question </button>
-        <button disabled={titleError || answersError} onClick={(e) => props.moveQuestion(e, false)}> Create Next Question &#187;</button>
+        <button disabled={titleError || answersError || correctAnswer === -1} onClick={(e) => props.moveQuestion(e, true)}> &#171; Previous Question </button>
+        <button disabled={titleError || answersError || correctAnswer === -1} onClick={(e) => props.moveQuestion(e, false)}> Create Next Question &#187;</button>
       </div>
     </form>
   );

@@ -8,7 +8,15 @@ function CreateQuestionForm(props) {
   const [value, setValue] = useState(1);
   const [title, setTitle] = useState({touched: false, value: props.question.title});
   const [correctAnswer, setCorrectAnswer] = useState(-1)
-  console.log(props.question)
+  // console.log(props.question)
+
+  // useEffect(() => {
+  //   setAnswers({value: props.question.answers, touched: false})
+  //   setTitle({value: props.question.title, touched: false})
+  //   setCorrectAnswer({value: props.question.correctAnswer, touched: false})
+  //   setValue(props.question.title)
+  // }, [])
+
   useEffect(() => {
     props.setQuestionList((questionList) => {
       return questionList.map((question, index) => {
@@ -17,6 +25,9 @@ function CreateQuestionForm(props) {
       });
     });
   }, [answers, value, title, correctAnswer]); 
+  // useEffect(() => {
+  //   setAnswers({value: props.question.answers, touched: false})
+  // }, [props.question])
   const editAnswer = (e, i) => {
     let answersCopy = [...answers.value];
     answersCopy[i] = e.target.value;
@@ -31,6 +42,12 @@ function CreateQuestionForm(props) {
     setValue(Number(e.target.value));
   };
 
+  const resetState = (question) => {
+    setValue(question.value)
+    setTitle({ touched: true, value: question.title })
+    setAnswers({value: question.answers, touched: false})
+    console.log(question)
+  }
   const answersError = answers.value.includes("") ? <div className="error">Please fill out all answer choices</div> : ""
   const titleError = title.value === "" ? <div className="error">Please fill out title to question </div> : ""
   return (
@@ -70,7 +87,7 @@ function CreateQuestionForm(props) {
       {answers.touched && answersError}
       <div className="quiz-buttons">
         <button disabled={titleError || answersError || correctAnswer === -1} onClick={(e) => props.moveQuestion(e, true)}> &#171; Previous Question </button>
-        <button disabled={titleError || answersError || correctAnswer === -1} onClick={(e) => props.moveQuestion(e, false)}> Create Next Question &#187;</button>
+        <button disabled={titleError || answersError || correctAnswer === -1} onClick={(e) => props.moveQuestion(e, false, resetState)}> Create Next Question &#187;</button>
       </div>
     </form>
   );

@@ -44,7 +44,9 @@ function CreateQuizForm(props) {
     loadData();
   }, []);
 
-  const moveQuestion = async (e, back) => {
+  console.log(questionList)
+
+  const moveQuestion = async (e, back, resetState) => {
     e.preventDefault()
     // console.log("Before")
     const updatedQuiz = await QuizApiService.patchQuiz(quiz.id, {
@@ -62,7 +64,9 @@ function CreateQuizForm(props) {
     }
     if (currentIndex === questionList.length - 1) {
       setQuestionList((questionList) => [...questionList, questionTemplate]);
+      resetState(questionTemplate)
     }
+    resetState(questionList[currentIndex + 1 + -2 * +back] || questionTemplate)
     setCurrentIndex((current) => current + 1 + -2 * +back);
   };
   return (

@@ -7,13 +7,15 @@ function CreateQuestionForm(props) {
   );
   const [value, setValue] = useState(1);
   const [title, setTitle] = useState({touched: false, value: props.question.title});
+  const [correctAnswer, setCorrectAnswer] = useState(-1)
 
+  console.log(correctAnswer)
   useEffect(() => {
     props.setQuestionList((questionList) => {
       // console.log(props.currentIndex)
       return questionList.map((question, index) => {
         if (props.currentIndex !== index) return question;
-        return { ...question, answers: answers.value, value: value, title: title.value };
+        return { ...question, answers: answers.value, value: value, title: title.value, correct_answer: correctAnswer };
       });
     });
   }, [answers, value, title]);
@@ -65,6 +67,7 @@ function CreateQuestionForm(props) {
           onChange={(e) => editAnswer(e, index)}
           type="text"
         />
+        <input onChange={(e) => setCorrectAnswer(+e.target.value)} type="radio" name="correct-answer" value={index} />
       </div>)}
       {answers.touched && answersError}
       <div className="quiz-buttons">

@@ -22,7 +22,7 @@ function SearchResultsRoute(props) {
   }, []);
 
   //figure out why nothing is returning from the search
-  console.log(searchResults)
+  // console.log(searchResults)
   return (
     <div>
       {searchResults.map((result) => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 function CreateQuestionForm(props) {
-  console.log(props)
+  // console.log(props)
   const [answers, setAnswers] = useState(
     {touched: false, value: props.question.answers}
   );
@@ -13,7 +13,7 @@ function CreateQuestionForm(props) {
       // console.log(props.currentIndex)
       return questionList.map((question, index) => {
         if (props.currentIndex !== index) return question;
-        return { ...question, answers: answers.value, value: value.value, title: title.value };
+        return { ...question, answers: answers.value, value: value, title: title.value };
       });
     });
   }, [answers, value, title]);
@@ -68,8 +68,8 @@ function CreateQuestionForm(props) {
       </div>)}
       {answers.touched && answersError}
       <div className="quiz-buttons">
-        <button disabled={titleError || answersError} onClick={() => props.moveQuestion(true)}> &#171; Previous Question </button>
-        <button disabled={titleError || answersError} onClick={() => props.moveQuestion(false)}> Create Next Question &#187;</button>
+        <button disabled={titleError || answersError} onClick={(e) => props.moveQuestion(e, true)}> &#171; Previous Question </button>
+        <button disabled={titleError || answersError} onClick={(e) => props.moveQuestion(e, false)}> Create Next Question &#187;</button>
       </div>
     </form>
   );

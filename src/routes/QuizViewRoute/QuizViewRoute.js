@@ -27,7 +27,7 @@ export default function QuizViewRoute(props) {
         let sqrel = {answers: selected, quiz_id: Number(props.match.params.id), student_id: userContext.user.id, score,  date_completed: new Date()}
         // console.log(sqrel)
         let returnedSqrel = await SqrelsService.postStudentSqrel(sqrel)
-        console.log(returnedSqrel)
+        // console.log(returnedSqrel)
         props.history.push(`/quiz-results/${returnedSqrel.id}`)
     
   }

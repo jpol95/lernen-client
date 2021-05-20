@@ -18,10 +18,10 @@ const QuizApiService = {
         : res.json()
     )
   },
-  patchQuiz(quiz, id) {
+  patchQuiz(id, quiz) {
     return fetch(`${config.API_ENDPOINT}/quiz/${id}`,
     {
-      method: 'POST',
+      method: 'PATCH',
       headers: {
         'content-type': 'application/json',
         'Authorization': `Bearer ${TokenService.getAuthToken()}`,

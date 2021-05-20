@@ -17,7 +17,7 @@ function QuizResultsRoute(props) {
         };
         loadData();
       }, []);
-      console.log(sqrel, questions)
+      // console.log(sqrel, questions)
     return (
             <>
             <button onClick={() => props.history.goBack()}className="back-button">Back</button>

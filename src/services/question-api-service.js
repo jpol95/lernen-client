@@ -34,7 +34,7 @@ const QuestionApiService = {
   patchQuestion(question) {
     return fetch(`${config.API_ENDPOINT}/question/${question.id}`,
     {
-      method: 'POST',
+      method: 'PATCH',
       headers: {
         'content-type': 'application/json',
         'Authorization': `Bearer ${TokenService.getAuthToken()}`,
